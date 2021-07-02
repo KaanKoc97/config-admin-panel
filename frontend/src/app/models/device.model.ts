@@ -13,12 +13,13 @@ export class Project {
 export class Device{
   ip_no? : string;
   configs? : Array<Config>
+  status? : string;
   constructor(obj? :any)
   {
     this.ip_no = obj ? obj.ip_no ? obj.ip_no:null:null
     this.configs = obj ? obj.configs ? obj.configs:null:null
+    this.status = obj ? obj.status ? obj.status:'pending':'pending'
   }
-
 }
 
 export class Config

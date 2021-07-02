@@ -16,11 +16,10 @@
       <li class="list-group-item" *ngFor="let project of projects; let i = index"
         [class.active]="i == currentProjectIndex" (click)="setActiveProject(project, i)">
         {{ project.projectName }}
+        
       </li>
+  
     </ul>
-    <button class="m-3 btn btn-sm btn-danger" (click)="removeAllProjects()">
-      Remove All
-    </button>
   </div>
   <div class="col-md-3">
     <h4>Device List</h4>
@@ -28,7 +27,17 @@
       <li class="list-group-item" *ngFor="let device of currentProject.devices; let i = index"
         [class.active]="i == currentDeviceIndex" (click)="setActiveDevice(device, i)">
         {{ device.ip_no }}
+        <div *ngIf="device.status == 'online'">
+          <span class= 'material-icons green'>check_circle</span>
+        </div>
+        <div *ngIf="device.status == 'timeout'">
+          <span class= 'material-icons red'>check_circle</span>
+        </div>
+        <div *ngIf="device.status == 'pending'">
+          <span class= 'material-icons yellow'>check_circle</span>
+        </div>
       </li>
+     
     </ul>
   </div>
   <div class="col-md-3">
@@ -37,7 +46,7 @@
       <li class="list-group-item" *ngFor="let config of currentDevice.configs; let i = index"
         [class.active]="i == currentConfigIndex" (click)="setActiveConfig(config, i)">
         {{ config.appName }}
-
+      
       </li>
     </ul>
   </div>
