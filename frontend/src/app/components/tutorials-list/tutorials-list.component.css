@@ -1,0 +1,8 @@
+.list {
+    text-align: left;
+    max-width: 750px;
+    margin: auto;
+  }
+.material-icons.green { color: #7FFF00; }
+.material-icons.red { color: #A52A2A; }
+.material-icons.yellow { color: #FFD700; }

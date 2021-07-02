@@ -1,0 +1,76 @@
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<div class="row">
+  <div class="col-md-12">
+    <div class="input-group mb-3">
+      <input type="text" class="form-control" placeholder="Search by title" [(ngModel)]="title" />
+      <div class="input-group-append">
+        <button class="btn btn-outline-secondary" type="button" (click)="searchTitle()">
+          Search
+        </button>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-3">
+    <h4>Projects List</h4>
+    <ul class="list-group">
+      <li class="list-group-item" *ngFor="let project of projects; let i = index"
+        [class.active]="i == currentProjectIndex" (click)="setActiveProject(project, i)">
+        {{ project.projectName }}
+      </li>
+    </ul>
+    <button class="m-3 btn btn-sm btn-danger" (click)="removeAllProjects()">
+      Remove All
+    </button>
+  </div>
+  <div class="col-md-3">
+    <h4>Device List</h4>
+    <ul class="list-group">
+      <li class="list-group-item" *ngFor="let device of currentProject.devices; let i = index"
+        [class.active]="i == currentDeviceIndex" (click)="setActiveDevice(device, i)">
+        {{ device.ip_no }}
+      </li>
+    </ul>
+  </div>
+  <div class="col-md-3">
+    <h4>Config List</h4>
+    <ul class="list-group">
+      <li class="list-group-item" *ngFor="let config of currentDevice.configs; let i = index"
+        [class.active]="i == currentConfigIndex" (click)="setActiveConfig(config, i)">
+        {{ config.appName }}
+
+      </li>
+    </ul>
+  </div>
+  <div class="col-md-3">
+
+    <div *ngIf="currentConfig.appName">
+      <h4>Config Info</h4>
+      <div>
+        <label><strong>Application Name:</strong></label> {{ currentConfig.appName }}
+      </div>
+      <div>
+        <label><strong>Config Url:</strong></label>
+        {{ currentConfig.configUrl }}
+      </div>
+      <div>
+        <label><strong>Status:</strong></label>
+
+        {{ currentConfig.status }}
+      </div>
+      <div *ngIf="currentConfig.status == 'online'">
+        <span class= 'material-icons green'>check_circle</span>
+      </div>
+      <div *ngIf="currentConfig.status == 'timeout'">
+        <span class= 'material-icons red'>block</span>
+      </div>
+      <div *ngIf="currentConfig.status == 'pending'">
+        <span class= 'material-icons yellow'>check_circle</span>
+      </div>
+      <a class="badge badge-warning" routerLink="/Projects/{{ currentProject.id }}">
+        Edit
+      </a>
+    </div>
+
+  </div>
+
+</div>
