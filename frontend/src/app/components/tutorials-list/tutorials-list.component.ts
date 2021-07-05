@@ -13,7 +13,7 @@ export class TutorialsListComponent implements OnInit {
   currentProject: Project = new Project("default");
   currentDevice: Device = new Device("default");
   currentConfig: Config = new Config("default");
-  currentDeviceIndex = -1
+  currentDeviceIndex = -1;
   currentProjectIndex = -1;
   currentConfigIndex = -1;
 
@@ -42,7 +42,7 @@ export class TutorialsListComponent implements OnInit {
     this.currentProject = new Project("default");
     this.currentDevice = new Device("default");
     this.currentConfig = new Config("default");
-    this.currentDeviceIndex = -1
+    this.currentDeviceIndex = -1;
     this.currentProjectIndex = -1;
     this.currentConfigIndex = -1;
   }
@@ -51,37 +51,43 @@ export class TutorialsListComponent implements OnInit {
     this.currentProject = new Project(project);
     this.currentProjectIndex = index;
     this.currentDeviceIndex = -1;
-    console.log(this.currentProject.devices?.map(item => item.ip_no));
   }
 
   setActiveDevice(device: Device, index: number): void {
     this.currentDevice = new Device(device);
     this.currentDeviceIndex = index;
     this.currentConfigIndex = -1;
-    for (let config of this.currentDevice.configs!) {
-      this.tutorialService.statusControl(config.configUrl)
-        .subscribe(
-          data => {
-            console.log(data);
-            this.currentProject.devices!.find(item =>item.ip_no == this.currentDevice.ip_no)!.status = 'pending';
-            if (data.Status == "online") {
-              this.currentProject.devices!.find(item =>item.ip_no == this.currentDevice.ip_no)!.status = 'online';
-              //this.currentDevice.status = "online";
-            }
-            else if (data.Status == "timeout") {
-              //this.currentDevice.status = "timeout";
-              this.currentProject.devices!.find(item =>item.ip_no == this.currentDevice.ip_no)!.status = 'timeout';
-            }
-            else if (data.Status == "pending") {
-              //this.currentDevice.status = "pending";
-              this.currentProject.devices!.find(item =>item.ip_no == this.currentDevice.ip_no)!.status = 'pending';
-            }
-          },
-          error => {
-            console.log(error);
-          });
-    }
+  }
 
+  projectPromise(project: Project): Promise<any> {
+    return new Promise<any>(async resolve => {
+      project.devices?.forEach((device, index, _) => {
+        for (let config of device.configs!)
+          this.tutorialService.statusControl(config.configUrl)
+            .subscribe(
+              data => {
+                console.log(data);
+                if (data.Status == "timeout") {
+                  this.currentProject.status = "timeout";
+                  resolve("timeout");
+                } else if (index == _.length - 1)
+                  resolve("online");
+              },
+              error => {
+                console.log(error);
+              });
+      })
+
+
+    });
+  }
+
+  async isProjectActive(project: Project): Promise<void> {
+    //let isActive = "pending";
+    let isActive = await this.projectPromise(project);
+    console.log("Project Status:" + isActive)
+    // this.currentProject.status = isActive;
+    // console.log("Project Status:" + this.currentProject.status);
   }
 
   setActiveConfig(config: Config, index: number): void {
@@ -91,21 +97,13 @@ export class TutorialsListComponent implements OnInit {
       .subscribe(
         data => {
           console.log(data);
-          if (data.Status == "online") {
-            this.currentConfig.status = "online";
-          }
-          else if (data.Status == "timeout") {
-            this.currentConfig.status = "timeout";
-          }
-          else if (data.Status == "pending") {
-            this.currentConfig.status = "pending";
-          }
+          this.currentConfig.status = "pending";
+          this.currentConfig.status = data.Status;
         },
         error => {
           console.log(error);
         });
   }
-
 
   removeAllProjects(): void {
     this.tutorialService.deleteAll()

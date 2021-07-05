@@ -14,8 +14,17 @@
     <h4>Projects List</h4>
     <ul class="list-group">
       <li class="list-group-item" *ngFor="let project of projects; let i = index"
-        [class.active]="i == currentProjectIndex" (click)="setActiveProject(project, i)">
+        [class.active]="i == currentProjectIndex" (click)="setActiveProject(project, i);isProjectActive(project);">
         {{ project.projectName }}
+        <div *ngIf="currentProject.status == 'online'">
+          <span class= 'material-icons green'>check_circle</span>
+        </div>
+        <div *ngIf="currentProject.status == 'timeout'">
+          <span class= 'material-icons red'>block</span>
+        </div>
+        <div *ngIf="currentProject.status == 'pending'">
+          <span class= 'material-icons yellow'>check_circle</span>
+        </div>
         
       </li>
   
@@ -31,7 +40,7 @@
           <span class= 'material-icons green'>check_circle</span>
         </div>
         <div *ngIf="device.status == 'timeout'">
-          <span class= 'material-icons red'>check_circle</span>
+          <span class= 'material-icons red'>block</span>
         </div>
         <div *ngIf="device.status == 'pending'">
           <span class= 'material-icons yellow'>check_circle</span>
