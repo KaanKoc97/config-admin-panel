@@ -77,15 +77,13 @@ export class TutorialsListComponent implements OnInit {
                 console.log(error);
               });
       })
-
-
     });
+    
   }
 
   async isProjectActive(project: Project): Promise<void> {
     //let isActive = "pending";
     let isActive = await this.projectPromise(project);
-    console.log("Project Status:" + isActive)
     // this.currentProject.status = isActive;
     // console.log("Project Status:" + this.currentProject.status);
   }
