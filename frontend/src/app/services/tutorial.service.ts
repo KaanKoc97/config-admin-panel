@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { Config, Project } from '../models/device.model';
+import { Device, Config, Project } from '../models/device.model';
 
 const baseUrl = 'http://localhost:8080';
 
@@ -20,10 +20,19 @@ export class DeviceService {
     return this.http.get(`${baseUrl}/${id}`);
   }
 
-  statusControl(ip : any): Observable<any>
+  projectStatusCheck(project : Project): Observable<any>
   {
-    const data = {"ip": ip};
-    return this.http.post(baseUrl + "/configs/", data);
+    return this.http.post(baseUrl + "/projectCheck", project);
+  }
+
+  deviceStatusCheck(device : Device): Observable<any>
+  {
+    return this.http.post(baseUrl + "/deviceCheck", device);
+  }
+
+  configStatusCheck(config : Config): Observable<any>
+  {
+    return this.http.post(baseUrl + "/configCheck", config);
   }
 
   create(data: any): Observable<any> {

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Config, Device, Project } from 'src/app/models/device.model';
 import { DeviceService } from 'src/app/services/tutorial.service';
-
+import { interval } from 'rxjs';
 @Component({
   selector: 'app-tutorials-list',
   templateUrl: './tutorials-list.component.html',
@@ -16,7 +16,6 @@ export class TutorialsListComponent implements OnInit {
   currentDeviceIndex = -1;
   currentProjectIndex = -1;
   currentConfigIndex = -1;
-
   title = '';
 
   constructor(private tutorialService: DeviceService) { }
@@ -53,50 +52,50 @@ export class TutorialsListComponent implements OnInit {
     this.currentDeviceIndex = -1;
   }
 
-  setActiveDevice(device: Device, index: number): void {
-    this.currentDevice = new Device(device);
-    this.currentDeviceIndex = index;
-    this.currentConfigIndex = -1;
-  }
-
-  projectPromise(project: Project): Promise<any> {
-    return new Promise<any>(async resolve => {
-      project.devices?.forEach((device, index, _) => {
-        for (let config of device.configs!)
-          this.tutorialService.statusControl(config.configUrl)
-            .subscribe(
-              data => {
-                console.log(data);
-                if (data.Status == "timeout") {
-                  this.currentProject.status = "timeout";
-                  resolve("timeout");
-                } else if (index == _.length - 1)
-                  resolve("online");
-              },
-              error => {
-                console.log(error);
-              });
-      })
+  isProjectActive(project: Project, index: number): void {
+    this.currentProject = new Project(project);
+    this.currentProjectIndex = index;
+    // this.tutorialService.projectStatusCheck(this.currentProject).subscribe(data =>
+    //   {
+    //     console.log(data);
+    //     this.currentProject.status = data.Status;
+    //   });
+    this.currentProject.devices?.forEach((value, index) => {
+      this.currentProject.devices![index].status = "pending";
+      this.tutorialService.deviceStatusCheck(value)
+        .subscribe(data => {
+          this.currentProject.devices![index].status = data.Status;
+        })
+    })
+    interval(10000).subscribe(x => {
+      this.isProjectActive(project,index);
     });
-    
   }
 
-  async isProjectActive(project: Project): Promise<void> {
-    //let isActive = "pending";
-    let isActive = await this.projectPromise(project);
-    // this.currentProject.status = isActive;
-    // console.log("Project Status:" + this.currentProject.status);
+  isDeviceActive(device: Device, index: number): void {
+    const foundIndex = this.currentProject.devices?.findIndex(x => x === device);
+    this.currentProject.devices![foundIndex!].status = "pending";
+    this.currentProject.devices![foundIndex!] = device;
+    this.currentDevice = device;
+    this.currentDeviceIndex = index;
+    this.tutorialService.deviceStatusCheck(device).subscribe(data => {
+      console.log(data);
+      this.currentProject.devices![foundIndex!].status = data.Status;
+    });
+
   }
 
-  setActiveConfig(config: Config, index: number): void {
-    this.currentConfig = new Config(config);
+  isConfigActive(config: Config, index: number): void {
+    const foundIndex = this.currentDevice.configs?.findIndex(x => x === config);
+    this.currentDevice.configs![foundIndex!].status = "pending";
+    this.currentDevice.configs![foundIndex!] = config;
+    this.currentConfig = config;
     this.currentConfigIndex = index;
-    this.tutorialService.statusControl(this.currentConfig.configUrl)
+    this.tutorialService.configStatusCheck(this.currentConfig)
       .subscribe(
         data => {
           console.log(data);
-          this.currentConfig.status = "pending";
-          this.currentConfig.status = data.Status;
+          this.currentDevice.configs![foundIndex!].status = data.Status;
         },
         error => {
           console.log(error);
