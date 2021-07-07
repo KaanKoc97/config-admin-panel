@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Config, Device, Project } from 'src/app/models/device.model';
 import { DeviceService } from 'src/app/services/tutorial.service';
-import { interval } from 'rxjs';
+import { interval, Observable, Subscription } from 'rxjs';
 @Component({
   selector: 'app-tutorials-list',
   templateUrl: './tutorials-list.component.html',
@@ -17,8 +17,12 @@ export class TutorialsListComponent implements OnInit {
   currentProjectIndex = -1;
   currentConfigIndex = -1;
   title = '';
-
-  constructor(private tutorialService: DeviceService) { }
+  projectTimer = setInterval(()=>{
+    this.isProjectActive(this.currentProject,this.currentProjectIndex)
+  }, 10000);
+  
+  constructor(private tutorialService: DeviceService) {
+  }
 
   ngOnInit(): void {
     this.retrieveProjects();
@@ -50,6 +54,7 @@ export class TutorialsListComponent implements OnInit {
     this.currentProject = new Project(project);
     this.currentProjectIndex = index;
     this.currentDeviceIndex = -1;
+ 
   }
 
   isProjectActive(project: Project, index: number): void {
@@ -67,9 +72,6 @@ export class TutorialsListComponent implements OnInit {
           this.currentProject.devices![index].status = data.Status;
         })
     })
-    interval(10000).subscribe(x => {
-      this.isProjectActive(project,index);
-    });
   }
 
   isDeviceActive(device: Device, index: number): void {

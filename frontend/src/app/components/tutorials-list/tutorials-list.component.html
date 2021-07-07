@@ -14,7 +14,7 @@
     <h4>Projects List</h4>
     <ul class="list-group">
       <li class="list-group-item" *ngFor="let project of projects; let i = index"
-        [class.active]="i == currentProjectIndex" (click)="isProjectActive(project, i);">
+        [class.active]="i == currentProjectIndex" (click)="setActiveProject(project, i);isProjectActive(project, i);">
         {{ project.projectName }}
       </li>
   

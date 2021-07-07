@@ -89,36 +89,36 @@ exports.deleteDevice = (req, res, next) => {
 };
 
 exports.projectCheck = (req, res, next) => {
-  const objProject = req.body.Project;
-  for (let index = 0; index < req.body.ips.length; index++) {
-    console.log("IP:", req.body.ip);
-    const objURL = new URL(statusJSON[req.body.ips]);
-    console.log("Host:" + objURL.hostname);
-    console.log("Port:" + objURL.port);
-    console.log("Path:" + objURL.pathname);
-    var options = {
-      hostname: objURL.hostname,
-      port: objURL.port,
-      path: objURL.pathname,
-      method: 'GET',
-      query: {
-        "func": "getconfig"
-      },
-      timeout: 3000,
-    };
-    console.log("Query:" + options.query.func);
-    const request = http.request(options, response => {
-      console.log(`statusCode: ${response.statusCode}`)
+  // const objProject = req.body.Project;
+  // for (let index = 0; index < req.body.ips.length; index++) {
+  //   console.log("IP:", req.body.ip);
+  //   const objURL = new URL(statusJSON[req.body.ips]);
+  //   console.log("Host:" + objURL.hostname);
+  //   console.log("Port:" + objURL.port);
+  //   console.log("Path:" + objURL.pathname);
+  //   var options = {
+  //     hostname: objURL.hostname,
+  //     port: objURL.port,
+  //     path: objURL.pathname,
+  //     method: 'GET',
+  //     query: {
+  //       "func": "getconfig"
+  //     },
+  //     timeout: 3000,
+  //   };
+  //   console.log("Query:" + options.query.func);
+  //   const request = http.request(options, response => {
+  //     console.log(`statusCode: ${response.statusCode}`)
 
-    })
-    request.on('timeout', () => {
-    });
+  //   })
+  //   request.on('timeout', () => {
+  //   });
 
-    request.on('error', error => {
-      console.error(error)
-    })
-  }
-  request.end()
+  //   request.on('error', error => {
+  //     console.error(error)
+  //   })
+  // }
+  // request.end()
 };
 
 exports.deviceCheck = (req, res, next) => {
