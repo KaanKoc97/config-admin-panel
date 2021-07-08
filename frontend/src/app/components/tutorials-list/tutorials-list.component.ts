@@ -17,9 +17,10 @@ export class TutorialsListComponent implements OnInit {
   currentProjectIndex = -1;
   currentConfigIndex = -1;
   title = '';
+
   projectTimer = setInterval(()=>{
-    this.isProjectActive(this.currentProject,this.currentProjectIndex)
-  }, 10000);
+    this.isProjectActive(this.currentProject, this.currentProjectIndex)
+  }, 20000);
   
   constructor(private tutorialService: DeviceService) {
   }
@@ -54,17 +55,11 @@ export class TutorialsListComponent implements OnInit {
     this.currentProject = new Project(project);
     this.currentProjectIndex = index;
     this.currentDeviceIndex = -1;
- 
   }
 
   isProjectActive(project: Project, index: number): void {
     this.currentProject = new Project(project);
     this.currentProjectIndex = index;
-    // this.tutorialService.projectStatusCheck(this.currentProject).subscribe(data =>
-    //   {
-    //     console.log(data);
-    //     this.currentProject.status = data.Status;
-    //   });
     this.currentProject.devices?.forEach((value, index) => {
       this.currentProject.devices![index].status = "pending";
       this.tutorialService.deviceStatusCheck(value)

@@ -14,7 +14,7 @@
     <h4>Projects List</h4>
     <ul class="list-group">
       <li class="list-group-item" *ngFor="let project of projects; let i = index"
-        [class.active]="i == currentProjectIndex" (click)="setActiveProject(project, i);isProjectActive(project, i);">
+        [class.active]="i == currentProjectIndex" (click)="isProjectActive(project, i);">
         {{ project.projectName }}
       </li>
   
@@ -58,7 +58,6 @@
     </ul>
   </div>
   <div class="col-md-3">
-
     <div *ngIf="currentConfig.appName">
       <h4>Config Info</h4>
       <div>
@@ -82,6 +81,8 @@
       <div *ngIf="currentConfig.status == 'pending'">
         <span class= 'material-icons yellow'>check_circle</span>
       </div>
+
+
       <a class="badge badge-warning" routerLink="/Projects/{{ currentProject.id }}">
         Edit
       </a>

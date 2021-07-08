@@ -89,10 +89,10 @@ exports.deleteDevice = (req, res, next) => {
 };
 
 exports.projectCheck = (req, res, next) => {
-  // const objProject = req.body.Project;
-  // for (let index = 0; index < req.body.ips.length; index++) {
-  //   console.log("IP:", req.body.ip);
-  //   const objURL = new URL(statusJSON[req.body.ips]);
+  // let devicePromises = [];
+  // for (let index = 0; index < req.body.device.length; index++) { 
+  //   console.log("IP:", req.body.devices[index].configUrl);
+  //   const objURL = new URL(req.body.configs[index].configUrl);
   //   console.log("Host:" + objURL.hostname);
   //   console.log("Port:" + objURL.port);
   //   console.log("Path:" + objURL.pathname);
@@ -107,28 +107,38 @@ exports.projectCheck = (req, res, next) => {
   //     timeout: 3000,
   //   };
   //   console.log("Query:" + options.query.func);
-  //   const request = http.request(options, response => {
-  //     console.log(`statusCode: ${response.statusCode}`)
+  //   const promise = new Promise((resolve, reject) => {
+  //     const request = http.request(options, response => {
+  //       console.log(`statusCode: ${response.statusCode}`)
+  //       resolve("online");
+  //     })
+  //     request.on('timeout', () => {
+  //       resolve("timeout")
+  //     });
 
-  //   })
-  //   request.on('timeout', () => {
+  //     request.on('error', error => {
+  //       console.error(error)
+  //     })
+  //     request.end()
+
   //   });
-
-  //   request.on('error', error => {
-  //     console.error(error)
-  //   })
+  //   devicePromises.push(promise);
   // }
-  // request.end()
+  // Promise.all(devicePromises).then((values) => {
+  //   if(values.includes("timeout")){
+  //   res.send({"Status" : "timeout"})
+  //   }
+  //   else
+  //   {
+  //     res.send({"Status" : "online"})
+  //   }
+  // });
 };
 
 exports.deviceCheck = (req, res, next) => {
   let devicePromises = [];
   for (let index = 0; index < req.body.configs.length; index++) { 
-    console.log("IP:", req.body.configs[index].configUrl);
     const objURL = new URL(req.body.configs[index].configUrl);
-    console.log("Host:" + objURL.hostname);
-    console.log("Port:" + objURL.port);
-    console.log("Path:" + objURL.pathname);
     var options = {
       hostname: objURL.hostname,
       port: objURL.port,
@@ -139,10 +149,8 @@ exports.deviceCheck = (req, res, next) => {
       },
       timeout: 3000,
     };
-    console.log("Query:" + options.query.func);
     const promise = new Promise((resolve, reject) => {
       const request = http.request(options, response => {
-        console.log(`statusCode: ${response.statusCode}`)
         resolve("online");
       })
       request.on('timeout', () => {
@@ -150,7 +158,6 @@ exports.deviceCheck = (req, res, next) => {
       });
 
       request.on('error', error => {
-        resolve("error")
         console.error(error)
       })
       request.end()
@@ -161,10 +168,6 @@ exports.deviceCheck = (req, res, next) => {
   Promise.all(devicePromises).then((values) => {
     if(values.includes("timeout")){
     res.send({"Status" : "timeout"})
-    }
-    else if (values.includes("error"))
-    {
-      res.send({"Status": "error"})
     }
     else
     {
