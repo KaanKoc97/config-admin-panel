@@ -14,7 +14,7 @@
     <h4>Projects List</h4>
     <ul class="list-group">
       <li class="list-group-item" *ngFor="let project of projects; let i = index"
-        [class.active]="i == currentProjectIndex" (click)="isProjectActive(project, i);">
+        [class.active]="i == currentProjectIndex" (click)="setActiveProject(project, i);isProjectActive(project, i)">
         {{ project.projectName }}
       </li>
   
@@ -24,7 +24,7 @@
     <h4>Device List</h4>
     <ul class="list-group">
       <li class="list-group-item" *ngFor="let device of currentProject.devices; let i = index"
-        [class.active]="i == currentDeviceIndex" (click)="isDeviceActive(device, i)">
+        [class.active]="i == currentDeviceIndex" (click)="setActiveDevice(device, i)">
         {{ device.ip_no }}
         <div *ngIf="device.status == 'online'">
           <span class= 'material-icons green'>check_circle</span>
@@ -35,6 +35,9 @@
         <div *ngIf="device.status == 'pending'">
           <span class= 'material-icons yellow'>check_circle</span>
         </div>
+        <div >
+        <button class="btn btn-primary" (click)="isDeviceActive(device, i)">Request</button>
+      </div>
       </li>
      
     </ul>
@@ -43,7 +46,7 @@
     <h4>Config List</h4>
     <ul class="list-group">
       <li class="list-group-item" *ngFor="let config of currentDevice.configs; let i = index"
-        [class.active]="i == currentConfigIndex" (click)="isConfigActive(config, i)">
+        [class.active]="i == currentConfigIndex" (click)="setActiveConfig(config, i)">
         {{ config.appName }}
         <div *ngIf="config.status == 'online'">
           <span class= 'material-icons green'>check_circle</span>

@@ -17,7 +17,7 @@ export class TutorialsListComponent implements OnInit {
   currentProjectIndex = -1;
   currentConfigIndex = -1;
   title = '';
-
+  buttonStatus = true; 
   projectTimer = setInterval(()=>{
     this.isProjectActive(this.currentProject, this.currentProjectIndex)
   }, 20000);
@@ -56,8 +56,18 @@ export class TutorialsListComponent implements OnInit {
     this.currentProjectIndex = index;
     this.currentDeviceIndex = -1;
   }
+  setActiveDevice(device: Device, index: number): void {
+    this.currentDevice = new Device(device);
+    this.currentDeviceIndex = index;
+    this.currentConfigIndex = -1;
+  }
 
+  setActiveConfig(config: Project, index: number): void {
+    this.currentConfig = new Config(config);
+    this.currentConfigIndex = index;
+  }
   isProjectActive(project: Project, index: number): void {
+    this.buttonStatus = false;
     this.currentProject = new Project(project);
     this.currentProjectIndex = index;
     this.currentProject.devices?.forEach((value, index) => {
@@ -65,6 +75,7 @@ export class TutorialsListComponent implements OnInit {
       this.tutorialService.deviceStatusCheck(value)
         .subscribe(data => {
           this.currentProject.devices![index].status = data.Status;
+
         })
     })
   }

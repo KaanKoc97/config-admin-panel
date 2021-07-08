@@ -137,7 +137,7 @@ exports.projectCheck = (req, res, next) => {
 
 exports.deviceCheck = (req, res, next) => {
   let devicePromises = [];
-  for (let index = 0; index < req.body.configs.length; index++) { 
+  for (let index = 0; index < req.body.configs.length; index++) {
     const objURL = new URL(req.body.configs[index].configUrl);
     var options = {
       hostname: objURL.hostname,
@@ -166,12 +166,11 @@ exports.deviceCheck = (req, res, next) => {
     devicePromises.push(promise);
   }
   Promise.all(devicePromises).then((values) => {
-    if(values.includes("timeout")){
-    res.send({"Status" : "timeout"})
+    if (values.includes("timeout")) {
+      res.send({ "Status": "timeout" })
     }
-    else
-    {
-      res.send({"Status" : "online"})
+    else {
+      res.send({ "Status": "online" })
     }
   });
 };
