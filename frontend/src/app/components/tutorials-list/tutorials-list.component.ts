@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Config, Device, Project } from 'src/app/models/device.model';
 import { DeviceService } from 'src/app/services/tutorial.service';
-import { interval, Observable, Subscription } from 'rxjs';
+
 @Component({
   selector: 'app-tutorials-list',
   templateUrl: './tutorials-list.component.html',
