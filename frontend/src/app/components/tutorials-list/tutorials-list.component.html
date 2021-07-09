@@ -17,7 +17,6 @@
         [class.active]="i == currentProjectIndex" (click)="setActiveProject(project, i);isProjectActive(project, i)">
         {{ project.projectName }}
       </li>
-  
     </ul>
   </div>
   <div class="col-md-3">
@@ -36,7 +35,7 @@
           <span class= 'material-icons yellow'>check_circle</span>
         </div>
         <div >
-        <button class="btn btn-primary" (click)="isDeviceActive(device, i)">Request</button>
+        <button class="btn btn-primary" (click)="isDeviceActive(device, i)" [disabled] = "device.status == 'online'">Request</button>
       </div>
       </li>
      
@@ -48,15 +47,6 @@
       <li class="list-group-item" *ngFor="let config of currentDevice.configs; let i = index"
         [class.active]="i == currentConfigIndex" (click)="setActiveConfig(config, i)">
         {{ config.appName }}
-        <div *ngIf="config.status == 'online'">
-          <span class= 'material-icons green'>check_circle</span>
-        </div>
-        <div *ngIf="config.status == 'timeout'">
-          <span class= 'material-icons red'>block</span>
-        </div>
-        <div *ngIf="config.status == 'pending'">
-          <span class= 'material-icons yellow'>check_circle</span>
-        </div>
       </li>
     </ul>
   </div>
@@ -71,17 +61,16 @@
         {{ currentConfig.configUrl }}
       </div>
       <div>
-        <label><strong>Status:</strong></label>
-
-        {{ currentConfig.status }}
+        <label><strong>Device Status:</strong></label>
+        {{ currentDevice.status }}
       </div>
-      <div *ngIf="currentConfig.status == 'online'">
+      <div *ngIf="currentDevice.status == 'online'">
         <span class= 'material-icons green'>check_circle</span>
       </div>
-      <div *ngIf="currentConfig.status == 'timeout'">
+      <div *ngIf="currentDevice.status == 'timeout'">
         <span class= 'material-icons red'>block</span>
       </div>
-      <div *ngIf="currentConfig.status == 'pending'">
+      <div *ngIf="currentDevice.status == 'pending'">
         <span class= 'material-icons yellow'>check_circle</span>
       </div>
 
