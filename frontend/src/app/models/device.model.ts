@@ -12,7 +12,6 @@ export class Project {
     }
   }
 
-
 export class Device{
   ip_no? : string;
   configs? : Array<Config>

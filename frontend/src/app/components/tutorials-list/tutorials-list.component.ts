@@ -13,8 +13,8 @@ export class TutorialsListComponent implements OnInit {
   currentProject: Project = new Project("default");
   currentDevice: Device = new Device("default");
   currentConfig: Config = new Config("default");
-  currentDeviceIndex = -1;
   currentProjectIndex = -1;
+  currentDeviceIndex = -1;
   currentConfigIndex = -1;
   title = '';
   projectTimer = setInterval(()=>{
