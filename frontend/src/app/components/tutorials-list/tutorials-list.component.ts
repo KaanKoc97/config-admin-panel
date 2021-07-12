@@ -23,7 +23,7 @@ export class TutorialsListComponent implements OnInit {
   
   constructor(private tutorialService: DeviceService) {
   }
-
+  
   ngOnInit(): void {
     this.retrieveProjects();
   }
