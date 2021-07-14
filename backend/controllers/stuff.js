@@ -136,9 +136,7 @@ exports.projectCheck = (req, res, next) => {
 };
 
 exports.deviceCheck = (req, res, next) => {
-  let devicePromises = [];
-  for (let index = 0; index < req.body.configs.length; index++) {
-    const objURL = new URL(req.body.configs[index].configUrl);
+    const objURL = new URL(req.body.configs[0].configUrl);
     var options = {
       hostname: objURL.hostname,
       port: objURL.port,
@@ -149,30 +147,17 @@ exports.deviceCheck = (req, res, next) => {
       },
       timeout: 3000,
     };
-    const promise = new Promise((resolve, reject) => {
-      const request = http.request(options, response => {
-        resolve("online");
+  const request = http.request(options, response => {
+        res.send({"Status": "online"});
       })
       request.on('timeout', () => {
-        resolve("timeout")
+        res.send({"Status": "timeout"});
       });
 
       request.on('error', error => {
         console.error(error)
       })
-      request.end()
-
-    });
-    devicePromises.push(promise);
-  }
-  Promise.all(devicePromises).then((values) => {
-    if (values.includes("timeout")) {
-      res.send({ "Status": "timeout" })
-    }
-    else {
-      res.send({ "Status": "online" })
-    }
-  });
+      request.end();
 };
 
 exports.configCheck = (req, res, next) => {
