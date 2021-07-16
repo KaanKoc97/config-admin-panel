@@ -16,6 +16,9 @@
       <li class="list-group-item" *ngFor="let project of projects; let i = index"
         [class.active]="i == currentProjectIndex" (click)="setActiveProject(project, i);isProjectActive(project, i)">
         {{ project.projectName }}
+        <span class="material-icons" (click)= "deleteProject(project)" style="float:right;">
+          delete  
+        </span>
       </li>
     </ul>
   </div>
@@ -25,18 +28,20 @@
       <li class="list-group-item" *ngFor="let device of currentProject.devices; let i = index"
         [class.active]="i == currentDeviceIndex" (click)="setActiveDevice(device, i)">
         {{ device.ip_no }}
-        <div *ngIf="device.status == 'online'">
-          <span class= 'material-icons green'>check_circle</span>
+        <div *ngIf="device.status == 'online'" style="float:right;">
+          <span class='material-icons green'>check_circle</span>
         </div>
-        <div *ngIf="device.status == 'timeout'">
-          <span class= 'material-icons red'>block</span>
+        <div *ngIf="device.status == 'timeout'" style="float:right;">
+          <span class='material-icons red'>block</span>
         </div>
-        <div *ngIf="device.status == 'pending'">
-          <span class= 'material-icons yellow'>check_circle</span>
+        <div *ngIf="device.status == 'pending'" style="float:right;">
+          <span class='material-icons yellow'>check_circle</span>
         </div>
-        <div >
-        <button class="btn btn-primary" (click)="isDeviceActive(device, i)" [disabled] = "device.status == 'online'">Request</button>
-      </div>
+        <div *ngIf="device.status == 'timeout'" style="float:right;">
+        <span class="material-icons" (click)="setActiveDevice(device,i);isDeviceActive(device, i)">
+          send
+          </span>
+        </div>
       </li>
     </ul>
   </div>
@@ -50,8 +55,8 @@
     </ul>
   </div>
   <div class="col-md-3">
+    <h4>Config Info</h4>
     <div *ngIf="currentConfig.appName">
-      <h4>Config Info</h4>
       <div>
         <label><strong>Application Name:</strong></label> {{ currentConfig.appName }}
       </div>
@@ -64,19 +69,19 @@
         {{ currentDevice.status }}
       </div>
       <div *ngIf="currentDevice.status == 'online'">
-        <span class= 'material-icons green'>check_circle</span>
+        <span class='material-icons green'>check_circle</span>
       </div>
       <div *ngIf="currentDevice.status == 'timeout'">
-        <span class= 'material-icons red'>block</span>
+        <span class='material-icons red'>block</span>
       </div>
       <div *ngIf="currentDevice.status == 'pending'">
-        <span class= 'material-icons yellow'>check_circle</span>
+        <span class='material-icons yellow'>check_circle</span>
       </div>
 
-      
-      <a class="badge badge-warning" routerLink="/Projects/{{ currentProject.id }}">
+
+      <!-- <a class="badge badge-warning" routerLink="/Projects/{{ currentProject.id }}">
         Edit
-      </a>
+      </a> -->
     </div>
 
   </div>

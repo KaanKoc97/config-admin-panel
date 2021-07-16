@@ -36,29 +36,17 @@ export class TutorialDetailsComponent implements OnInit {
         });
   }
 
-  updateTutorial(): void {
-    this.message = '';
+  // updateTutorial(): void {
+  //   this.message = '';
 
-    this.tutorialService.update(this.currentProject.id, this.currentProject)
-      .subscribe(
-        response => {
-          console.log(response);
-          this.message = response.message ? response.message : 'This tutorial was updated successfully!';
-        },
-        error => {
-          console.log(error);
-        });
-  }
-
-  deleteTutorial(): void {
-    this.tutorialService.delete(this.currentProject.id)
-      .subscribe(
-        response => {
-          console.log(response);
-          this.router.navigate(['/tutorials']);
-        },
-        error => {
-          console.log(error);
-        });
-  }
+  //   this.tutorialService.update(this.currentProject.id, this.currentProject)
+  //     .subscribe(
+  //       response => {
+  //         console.log(response);
+  //         this.message = response.message ? response.message : 'This tutorial was updated successfully!';
+  //       },
+  //       error => {
+  //         console.log(error);
+  //       });
+  // }
 }

@@ -35,21 +35,21 @@ export class DeviceService {
     return this.http.post(baseUrl + "/configCheck", config);
   }
 
-  create(data: any): Observable<any> {
-    return this.http.post(baseUrl, data);
+  createProject(data: any): Observable<any> {
+    return this.http.post(baseUrl + "/addProject", data);
   }
 
   update(id: any, data: any): Observable<any> {
     return this.http.put(`${baseUrl}/${id}`, data);
   }
 
-  delete(id: any): Observable<any> {
-    return this.http.delete(`${baseUrl}/${id}`);
+  deleteProject(id: any): Observable<any> {
+    return this.http.delete(baseUrl+ '/' + id);
   }
 
-  deleteAll(): Observable<any> {
-    return this.http.delete(baseUrl);
-  }
+  // deleteAll(): Observable<any> {
+  //   return this.http.delete(baseUrl);
+  // }
 
   findByTitle(title: any): Observable<Project[]> {
     return this.http.get<Project[]>(`${baseUrl}?title=${title}`);

@@ -1,10 +1,10 @@
 const Project = require('../models/projects');
-const http = require('http')
+const http = require('http');
+const { ObjectId } = require('mongodb');
 
-exports.createDevice = (req, res, next) => {
+exports.createProject = (req, res, next) => {
   const project = new Project({
-    name: req.body.name,
-    devices: req.body.devices
+    projectName: req.body.projectName,
   });
   project.save().then(
     () => {
@@ -72,12 +72,15 @@ exports.modifyDevice = (req, res, next) => {
   );
 };
 
-exports.deleteDevice = (req, res, next) => {
-  device.deleteOne({ _id: req.params.id }).then(
+exports.deleteProject = (req, res, next) => {
+  Project.deleteOne({ _id: req.params.id }).then(
     () => {
-      res.status(200).json({
-        message: 'Deleted!'
-      });
+      setTimeout(() => {
+        res.status(200).json({
+          message: 'Deleted!'
+        });
+      }, 3000);
+
     }
   ).catch(
     (error) => {

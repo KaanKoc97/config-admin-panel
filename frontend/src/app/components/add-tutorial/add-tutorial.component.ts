@@ -18,10 +18,10 @@ export class AddTutorialComponent implements OnInit {
 
   saveProject(): void {
     const data = {
-      ip_no: this.project.projectName,
+      projectName : this.project.projectName,
     };
 
-    this.tutorialService.create(data)
+    this.tutorialService.createProject(data)
       .subscribe(
         response => {
           console.log(response);

@@ -1,11 +1,11 @@
 export class Project {
-    id?: any;
+    _id?: any;
     projectName?: string;
     devices?: Array<Device>;
     status?: string;
     constructor(obj?:any)
     {
-      this.id = obj ? obj.id ? obj.id:obj._id ? obj._id:null:null
+      this._id = obj ? obj._id:
       this.projectName = obj ? obj.projectName ? obj.projectName:null:null
       this.devices = obj ? obj.devices ? obj.devices:null:null
       this.status = obj ? obj.status ? obj.status:'pending':'pending'

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { async } from '@angular/core/testing';
 import { Config, Device, Project } from 'src/app/models/device.model';
 import { DeviceService } from 'src/app/services/tutorial.service';
 
@@ -17,13 +18,13 @@ export class TutorialsListComponent implements OnInit {
   currentDeviceIndex = -1;
   currentConfigIndex = -1;
   title = '';
-  projectTimer = setInterval(()=>{
+  projectTimer = setInterval(() => {
     this.isProjectActive(this.currentProject, this.currentProjectIndex)
   }, 20000);
-  
+
   constructor(private tutorialService: DeviceService) {
   }
-  
+
   ngOnInit(): void {
     this.retrieveProjects();
   }
@@ -52,8 +53,11 @@ export class TutorialsListComponent implements OnInit {
 
   setActiveProject(project: Project, index: number): void {
     this.currentProject = new Project(project);
+    this.currentDevice = new Device("default");
+    this.currentConfig = new Config("default");
     this.currentProjectIndex = index;
     this.currentDeviceIndex = -1;
+    this.currentConfigIndex = -1;
   }
 
   setActiveDevice(device: Device, index: number): void {
@@ -108,17 +112,31 @@ export class TutorialsListComponent implements OnInit {
         });
   }
 
-  removeAllProjects(): void {
-    this.tutorialService.deleteAll()
-      .subscribe(
-        response => {
-          console.log(response);
-          this.refreshList();
+  async deleteProject(project: Project): Promise<void> {
+    if (confirm("Are you sure to delete this project?")) {
+        const index = this.projects?.findIndex(x => x === project);
+        this.tutorialService.deleteProject(this.projects![index!]._id).subscribe(data => {
+          console.log(data);
         },
-        error => {
-          console.log(error);
-        });
+          error => {
+            console.log(error);
+          });
+       
+    }
+    this.retrieveProjects();
   }
+
+  // removeAllProjects(): void {
+  //   this.tutorialService.deleteAll()
+  //     .subscribe(
+  //       response => {
+  //         console.log(response);
+  //         this.refreshList();
+  //       },
+  //       error => {
+  //         console.log(error);
+  //       });
+  // }
 
   searchTitle(): void {
     this.currentProject = {};
