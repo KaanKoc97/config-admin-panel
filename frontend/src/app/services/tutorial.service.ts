@@ -30,11 +30,6 @@ export class DeviceService {
     return this.http.post(baseUrl + "/deviceCheck", device);
   }
 
-  configStatusCheck(config : Config): Observable<any>
-  {
-    return this.http.post(baseUrl + "/configCheck", config);
-  }
-
   createProject(data: any): Observable<any> {
     return this.http.post(baseUrl + "/addProject", data);
   }

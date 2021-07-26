@@ -95,23 +95,6 @@ export class TutorialsListComponent implements OnInit {
     });
   }
 
-  isConfigActive(config: Config, index: number): void {
-    const foundIndex = this.currentDevice.configs?.findIndex(x => x === config);
-    this.currentDevice.configs![foundIndex!].status = "pending";
-    this.currentDevice.configs![foundIndex!] = config;
-    this.currentConfig = config;
-    this.currentConfigIndex = index;
-    this.tutorialService.configStatusCheck(this.currentConfig)
-      .subscribe(
-        data => {
-          console.log(data);
-          this.currentDevice.configs![foundIndex!].status = data.Status;
-        },
-        error => {
-          console.log(error);
-        });
-  }
-
   async deleteProject(project: Project): Promise<void> {
     if (confirm("Are you sure to delete this project?")) {
         const index = this.projects?.findIndex(x => x === project);

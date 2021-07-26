@@ -1,6 +1,5 @@
 const Project = require('../models/projects');
 const http = require('http');
-const { ObjectId } = require('mongodb');
 
 exports.createProject = (req, res, next) => {
   const project = new Project({
@@ -89,53 +88,6 @@ exports.deleteProject = (req, res, next) => {
       });
     }
   );
-};
-
-exports.projectCheck = (req, res, next) => {
-  // let devicePromises = [];
-  // for (let index = 0; index < req.body.device.length; index++) { 
-  //   console.log("IP:", req.body.devices[index].configUrl);
-  //   const objURL = new URL(req.body.configs[index].configUrl);
-  //   console.log("Host:" + objURL.hostname);
-  //   console.log("Port:" + objURL.port);
-  //   console.log("Path:" + objURL.pathname);
-  //   var options = {
-  //     hostname: objURL.hostname,
-  //     port: objURL.port,
-  //     path: objURL.pathname,
-  //     method: 'GET',
-  //     query: {
-  //       "func": "getconfig"
-  //     },
-  //     timeout: 3000,
-  //   };
-  //   console.log("Query:" + options.query.func);
-  //   const promise = new Promise((resolve, reject) => {
-  //     const request = http.request(options, response => {
-  //       console.log(`statusCode: ${response.statusCode}`)
-  //       resolve("online");
-  //     })
-  //     request.on('timeout', () => {
-  //       resolve("timeout")
-  //     });
-
-  //     request.on('error', error => {
-  //       console.error(error)
-  //     })
-  //     request.end()
-
-  //   });
-  //   devicePromises.push(promise);
-  // }
-  // Promise.all(devicePromises).then((values) => {
-  //   if(values.includes("timeout")){
-  //   res.send({"Status" : "timeout"})
-  //   }
-  //   else
-  //   {
-  //     res.send({"Status" : "online"})
-  //   }
-  // });
 };
 
 exports.deviceCheck = (req, res, next) => {
