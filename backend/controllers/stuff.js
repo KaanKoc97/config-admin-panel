@@ -114,29 +114,3 @@ exports.deviceCheck = (req, res, next) => {
       })
       request.end();
 };
-
-exports.configCheck = (req, res, next) => {
-  const objURL = new URL(req.body.configUrl);
-  var options = {
-    hostname: objURL.hostname,
-    port: objURL.port,
-    path: objURL.pathname,
-    method: 'GET',
-    query: {
-      "func": "getconfig"
-    },
-    timeout: 3000,
-  };
-  const request = http.request(options, response => {
-    console.log(`statusCode: ${response.statusCode}`)
-    res.send({ "Status": "online" })
-  })
-  request.on('timeout', () => {
-    res.send({ "Status": "timeout" })
-  });
-
-  request.on('error', error => {
-    console.error(error)
-  })
-  request.end()
-};

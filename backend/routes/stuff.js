@@ -5,9 +5,7 @@ const stuffCtrl = require('../controllers/stuff');
 
 router.get('', stuffCtrl.getAllDevice);
 router.get('/:id', stuffCtrl.getOneProject);
-router.post('/configCheck', stuffCtrl.configCheck);
 router.post('/deviceCheck', stuffCtrl.deviceCheck);
-router.post('/projectCheck', stuffCtrl.projectCheck);
 router.post('/addProject', stuffCtrl.createProject);
 router.put('/:id', stuffCtrl.modifyDevice);
 router.delete('/:id', stuffCtrl.deleteProject);

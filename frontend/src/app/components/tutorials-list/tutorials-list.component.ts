@@ -62,6 +62,7 @@ export class TutorialsListComponent implements OnInit {
 
   setActiveDevice(device: Device, index: number): void {
     this.currentDevice = new Device(device);
+    this.currentConfig = new Config("default");
     this.currentDeviceIndex = index;
     this.currentConfigIndex = -1;
   }
@@ -95,18 +96,21 @@ export class TutorialsListComponent implements OnInit {
     });
   }
 
-  async deleteProject(project: Project): Promise<void> {
+  async deletePromise(project: Project) {
     if (confirm("Are you sure to delete this project?")) {
-        const index = this.projects?.findIndex(x => x === project);
-        this.tutorialService.deleteProject(this.projects![index!]._id).subscribe(data => {
-          console.log(data);
-        },
-          error => {
-            console.log(error);
-          });
-       
+      const index = this.projects?.findIndex(x => x === project);
+      this.tutorialService.deleteProject(this.projects![index!]._id).subscribe(data => {
+        console.log(data);
+      },
+        error => {
+          console.log(error);
+        });
     }
-    this.retrieveProjects();
+  }
+
+  async deleteProject(project: Project) {
+    await this.deletePromise(project);
+    location.reload();
   }
 
   // removeAllProjects(): void {
