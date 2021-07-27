@@ -45,10 +45,14 @@ export class DeviceService {
     return this.http.post(baseUrl + "/addProject", data);
   }
 
-  createDevice(data: any): Observable<any>
+  createDevice(device: Device): Observable<any>
   {
-    return this.http.post(baseUrl + "/addDevice/" + this.getProjId(), data);
-    
+    return this.http.post(baseUrl + "/addDevice/" + this.getProjId(), device);
+  }
+
+  deleteDevice(id: any): Observable<any>
+  {
+    return this.http.delete(baseUrl + '/deleteDevice/' + id);
   }
 
   update(id: any, data: any): Observable<any> {

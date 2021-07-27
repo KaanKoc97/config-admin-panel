@@ -11,6 +11,7 @@ export class AddDeviceComponent implements OnInit {
 
   device = new Device();
   projId : any;
+  projName : any;
   constructor(private tutorialService: DeviceService) { }
 
   ngOnInit(): void {
