@@ -91,34 +91,40 @@ exports.deleteProject = (req, res, next) => {
 };
 
 exports.deviceCheck = (req, res, next) => {
-  const objURL = new URL(req.body.configs[0].configUrl);
-  var options = {
-    hostname: objURL.hostname,
-    port: objURL.port,
-    path: objURL.pathname,
-    method: 'GET',
-    query: {
-      "func": "getconfig"
-    },
-    timeout: 3000,
-  };
-  const request = http.request(options, response => {
-    res.send({ "Status": "online" });
-  })
-  request.on('timeout', () => {
-    res.send({ "Status": "timeout" });
-  });
+  if (req.body.configs != undefined) {
+    const objURL = new URL(req.body.configs[0].configUrl);
+    var options = {
+      hostname: objURL.hostname,
+      port: objURL.port,
+      path: objURL.pathname,
+      method: 'GET',
+      query: {
+        "func": "getconfig"
+      },
+      timeout: 3000,
+    };
+    const request = http.request(options, response => {
+      res.send({ "Status": "online" });
+    })
+    request.on('timeout', () => {
+      res.send({ "Status": "timeout" });
+    });
 
-  request.on('error', error => {
-    console.error(error)
-  })
-  request.end();
+    request.on('error', error => {
+      console.error(error)
+    })
+    request.end();
+  }
+  else
+  {
+    res.send({ "Status": "timeout" });
+  }
 };
 
 exports.createDevice = (req, res, next) => {
-  let device = {ip_no: req.body.ip_no}; 
-  console.log(Project.find({_id: req.params.id}));
-  Project.updateOne({_id: req.params.id}, {$push:{devices:device}}).then
+  let device = { ip_no: req.body.ip_no };
+  console.log(Project.find({ _id: req.params.id }));
+  Project.updateOne({ _id: req.params.id }, { $push: { devices: device } }).then
     (
       () => {
         res.status(201).json({
