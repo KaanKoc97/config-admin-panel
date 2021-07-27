@@ -116,7 +116,7 @@ exports.deviceCheck = (req, res, next) => {
 };
 
 exports.createDevice = (req, res, next) => {
-  let device = {ip_no: req.body.ip_no, configs:req.body.configs}; 
+  let device = {ip_no: req.body.ip_no}; 
   console.log(Project.find({_id: req.params.id}));
   Project.updateOne({_id: req.params.id}, {$push:{devices:device}}).then
     (

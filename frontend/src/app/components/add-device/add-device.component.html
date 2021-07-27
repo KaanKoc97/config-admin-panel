@@ -1,17 +1,11 @@
 <div>
     <div class="submit-form">
         <div class="form-group">
-            <div>
-                <label for="ip_no">IP No</label>
-                <input class="form-control" id="ip_no" required [(ngModel)]="device.ip_no" name="ip no" />
-            </div>
-            <div>
-                <label for="configs">Config</label>
-                <input class="form-control" id="configs" required [(ngModel)]="device.configs" name="configs" />
-            </div>
-            <div>
-                <button (click)="saveDevice()" class="btn btn-success">Submit</button>
-            </div>
+            <label for="ip_no">{{projId}}</label>
+            <label for="ip_no">IP No</label>
+            <input class="form-control" id="ip_no" required [(ngModel)]="device.ip_no" name="ip_no" />
         </div>
+
+        <button (click)="saveDevice()" class="btn btn-success">Submit</button>
     </div>
 </div>
