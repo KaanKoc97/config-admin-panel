@@ -3,11 +3,12 @@
     max-width: 750px;
     margin: auto;
   }
-.material-icons.green { color: #7FFF00; }
-.material-icons.red { color: #A52A2A; }
-.material-icons.yellow { color: #FFD700; }
+.material-icons.green { color: #7FFF00; cursor: pointer; }
+.material-icons.red { color: #A52A2A;   cursor: pointer;}
+.material-icons.yellow { color: #FFD700; cursor: pointer;}
 .material-icons {
   font-size: 28px;
+  cursor: pointer;
 }
 .btn-primary
 {

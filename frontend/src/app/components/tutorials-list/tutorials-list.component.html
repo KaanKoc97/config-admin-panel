@@ -16,7 +16,7 @@
       <li class="list-group-item" *ngFor="let project of projects; let i = index"
         [class.active]="i == currentProjectIndex" (click)="setActiveProject(project, i);isProjectActive(project, i)">
         {{ project.projectName }}
-        <span class="material-icons" (click)= "deleteProject(project)" style="float:right;">
+        <span class="material-icons" (click)= "deleteProject(project)" title= "Delete"style="float:right;">
           delete  
         </span>
       </li>
@@ -69,13 +69,13 @@
         {{ currentDevice.status }}
       </div>
       <div *ngIf="currentDevice.status == 'online'">
-        <span class='material-icons green'>check_circle</span>
+        <span class='material-icons green' title="Online">check_circle</span>
       </div>
       <div *ngIf="currentDevice.status == 'timeout'">
-        <span class='material-icons red'>block</span>
+        <span class='material-icons red' title="Blocked" >block</span>
       </div>
       <div *ngIf="currentDevice.status == 'pending'">
-        <span class='material-icons yellow'>check_circle</span>
+        <span class='material-icons yellow' title="Pending" >check_circle</span>
       </div>
 
 
