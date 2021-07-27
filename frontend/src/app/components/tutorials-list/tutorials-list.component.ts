@@ -1,5 +1,4 @@
-import { Component, OnInit } from '@angular/core';
-import { async } from '@angular/core/testing';
+import { Component, Input, OnInit } from '@angular/core';
 import { Config, Device, Project } from 'src/app/models/device.model';
 import { DeviceService } from 'src/app/services/tutorial.service';
 
@@ -58,6 +57,7 @@ export class TutorialsListComponent implements OnInit {
     this.currentProjectIndex = index;
     this.currentDeviceIndex = -1;
     this.currentConfigIndex = -1;
+    this.tutorialService.setProjId(this.currentProject._id);
   }
 
   setActiveDevice(device: Device, index: number): void {
@@ -112,6 +112,7 @@ export class TutorialsListComponent implements OnInit {
     await this.deletePromise(project);
     location.reload();
   }
+
 
   // removeAllProjects(): void {
   //   this.tutorialService.deleteAll()
