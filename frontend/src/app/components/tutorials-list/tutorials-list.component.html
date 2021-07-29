@@ -37,6 +37,9 @@
         <div *ngIf="device.status == 'pending'" style="float:right;">
           <span class='material-icons yellow'>check_circle</span>
         </div>
+        <div *ngIf="device.status == 'confignotfound'" style="float:right;">
+          <span class='material-icons yellow'>block</span>
+        </div>
         <div *ngIf="device.status == 'timeout'" style="float:right;">
         <span class="material-icons" (click)="setActiveDevice(device,i);isDeviceActive(device, i)">
           send

@@ -8,7 +8,7 @@ exports.createProject = (req, res, next) => {
   project.save().then(
     () => {
       res.status(201).json({
-        message: 'Post saved successfully!'
+        message: 'Project saved successfully!'
       });
     }
   ).catch(
@@ -114,15 +114,13 @@ exports.deviceCheck = (req, res, next) => {
     })
     request.end();
   }
-  else
-  {
-    res.send({ "Status": "timeout" });
+  else {
+    res.send({ "Status": "confignotfound" });
   }
 };
 
 exports.createDevice = (req, res, next) => {
   let device = { ip_no: req.body.ip_no };
-  console.log(Project.find({ _id: req.params.id }));
   Project.updateOne({ _id: req.params.id }, { $push: { devices: device } }).then
     (
       () => {
