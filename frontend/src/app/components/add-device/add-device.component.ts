@@ -16,6 +16,7 @@ export class AddDeviceComponent implements OnInit {
 
   ngOnInit(): void {
     this.projId = this.tutorialService.getProjId();
+    this.projName = this.tutorialService.getProjName();
   }
   saveDevice()
   {

@@ -11,6 +11,7 @@ const baseUrl = 'http://192.168.30.12:8080';
 export class DeviceService {
 
   projId : any;
+  projName : any;
   constructor(private http: HttpClient) { }
 
   getAll(): Observable<Project[]> {
@@ -31,6 +32,16 @@ export class DeviceService {
     this.projId = projId;
   }
 
+  getProjName() : Observable<any>
+  {
+    return this.projName;
+  }
+
+  setProjName(projName: any)
+  {
+    this.projName = projName;
+  }
+  
   projectStatusCheck(project : Project): Observable<any>
   {
     return this.http.post(baseUrl + "/projectCheck", project);

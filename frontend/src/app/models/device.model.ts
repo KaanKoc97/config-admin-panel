@@ -5,8 +5,8 @@ export class Project {
     status?: string;
     constructor(obj?:any)
     {
-      this._id = obj ? obj._id:
-      this.projectName = obj ? obj.projectName ? obj.projectName:null:null
+      this._id = obj ? obj._id:null
+      this.projectName = obj ? obj.projectName:null
       this.devices = obj ? obj.devices ? obj.devices:null:null
       this.status = obj ? obj.status ? obj.status:'pending':'pending'
     }

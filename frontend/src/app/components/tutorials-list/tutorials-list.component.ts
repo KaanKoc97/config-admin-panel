@@ -33,7 +33,6 @@ export class TutorialsListComponent implements OnInit {
       .subscribe(
         data => {
           this.projects = data;
-          console.log(data);
         },
         error => {
           console.log(error);
@@ -58,6 +57,7 @@ export class TutorialsListComponent implements OnInit {
     this.currentDeviceIndex = -1;
     this.currentConfigIndex = -1;
     this.tutorialService.setProjId(this.currentProject._id);
+    this.tutorialService.setProjName(project.projectName);
   }
 
   setActiveDevice(device: Device, index: number): void {

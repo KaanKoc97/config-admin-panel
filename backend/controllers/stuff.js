@@ -105,11 +105,10 @@ exports.deviceCheck = (req, res, next) => {
     };
     const request = http.request(options, response => {
       res.send({ "Status": "online" });
-    })
+    });
     request.on('timeout', () => {
       res.send({ "Status": "timeout" });
     });
-
     request.on('error', error => {
       console.error(error)
     })
