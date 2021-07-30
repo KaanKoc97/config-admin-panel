@@ -104,7 +104,7 @@ exports.deviceCheck = (req, res, next) => {
       timeout: 3000,
     };
     const request = http.request(options, response => {
-      if (response) {
+      if (response != undefined) {
         res.send({ "Status": "online" });
       }
     });
