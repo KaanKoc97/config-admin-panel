@@ -65,6 +65,7 @@ export class TutorialsListComponent implements OnInit {
     this.currentConfig = new Config("default");
     this.currentDeviceIndex = index;
     this.currentConfigIndex = -1;
+    this.tutorialService.setDeviceIp(device.ip_no);
   }
 
   setActiveConfig(config: Config, index: number): void {

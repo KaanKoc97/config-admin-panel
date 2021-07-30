@@ -137,3 +137,23 @@ exports.createDevice = (req, res, next) => {
     )
     ;
 }
+
+
+exports.createConfig = (req, res, next) => {
+  let config = {appName: req.body.appName, configUrl: req.body.configUrl};
+  Project.updateOne({ _id: req.params.id, "devices.ip_no": req.params.ip}, { $push: {"devices.$.configs": config}}).then
+    (
+      () => {
+        res.status(201).json({
+          message: 'Config created successfully!'
+        });
+      }
+    ).catch(
+      (error) => {
+        res.status(400).json({
+          error: error
+        });
+      }
+    )
+    ;
+}

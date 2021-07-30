@@ -10,6 +10,7 @@ import { AddTutorialComponent } from './components/add-tutorial/add-tutorial.com
 import { TutorialDetailsComponent } from './components/tutorial-details/tutorial-details.component';
 import { TutorialsListComponent } from './components/tutorials-list/tutorials-list.component';
 import { AddDeviceComponent } from './components/add-device/add-device.component';
+import { AddConfigComponent } from './components/add-config/add-config.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { AddDeviceComponent } from './components/add-device/add-device.component
     AddTutorialComponent,
     TutorialDetailsComponent,
     TutorialsListComponent,
-    AddDeviceComponent
+    AddDeviceComponent,
+    AddConfigComponent
   ],
   imports: [
     BrowserModule,

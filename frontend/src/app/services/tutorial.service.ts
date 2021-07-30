@@ -12,6 +12,7 @@ export class DeviceService {
 
   projId : any;
   projName : any;
+  deviceIp : any;
   constructor(private http: HttpClient) { }
 
   getAll(): Observable<Project[]> {
@@ -41,6 +42,16 @@ export class DeviceService {
   {
     this.projName = projName;
   }
+
+  getDeviceIp() : Observable<any>
+  {
+    return this.deviceIp;
+  }
+
+  setDeviceIp(deviceIp: any)
+  {
+    this.deviceIp = deviceIp;
+  }
   
   projectStatusCheck(project : Project): Observable<any>
   {
@@ -59,6 +70,11 @@ export class DeviceService {
   createDevice(device: Device): Observable<any>
   {
     return this.http.post(baseUrl + "/addDevice/" + this.getProjId(), device);
+  }
+
+  createConfig(config : Config): Observable<any>
+  {
+    return this.http.post(baseUrl + "/addConfig/" + this.getProjId() + '/' + this.getDeviceIp(), config);
   }
 
   deleteDevice(id: any): Observable<any>

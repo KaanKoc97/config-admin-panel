@@ -4,13 +4,15 @@ import { TutorialsListComponent } from './components/tutorials-list/tutorials-li
 import { TutorialDetailsComponent } from './components/tutorial-details/tutorial-details.component';
 import { AddTutorialComponent } from './components/add-tutorial/add-tutorial.component';
 import { AddDeviceComponent } from './components/add-device/add-device.component';
+import { AddConfigComponent } from './components/add-config/add-config.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'tutorials', pathMatch: 'full' },
   { path: 'tutorials', component: TutorialsListComponent },
   { path: 'tutorials/:id', component: TutorialDetailsComponent },
   { path: 'addProject', component: AddTutorialComponent },
-  { path: 'addDevice', component: AddDeviceComponent }
+  { path: 'addDevice', component: AddDeviceComponent },
+  { path: 'addConfig', component: AddConfigComponent }
 ];
 
 @NgModule({

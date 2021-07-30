@@ -1,0 +1,16 @@
+<div>
+    <div class="submit-form">
+        <div class="form-group">
+            <label for="label">Name of the Project:</label><br>
+            <label for="projName">{{ projName }}</label><br>
+            <label for="label">IP of the Device:</label><br>
+            <label for="projName">{{ deviceIp }}</label><br>
+            <label for="label">Config Application Name:</label>
+            <input class="form-control" id="appName" required [(ngModel)]="config.appName" name="appName" />
+            <label for="label">Config Url:</label>
+            <input class="form-control" id="configUrl" required [(ngModel)]="config.configUrl" name="configUrl" />
+        </div>
+
+        <button (click)="saveConfig()" class="btn btn-success">Submit</button>
+    </div>
+</div>
