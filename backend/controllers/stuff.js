@@ -104,7 +104,9 @@ exports.deviceCheck = (req, res, next) => {
       timeout: 3000,
     };
     const request = http.request(options, response => {
-      res.send({ "Status": "online" });
+      if (response) {
+        res.send({ "Status": "online" });
+      }
     });
     request.on('timeout', () => {
       res.send({ "Status": "timeout" });
@@ -140,8 +142,8 @@ exports.createDevice = (req, res, next) => {
 
 
 exports.createConfig = (req, res, next) => {
-  let config = {appName: req.body.appName, configUrl: req.body.configUrl};
-  Project.updateOne({ _id: req.params.id, "devices.ip_no": req.params.ip}, { $push: {"devices.$.configs": config}}).then
+  let config = { appName: req.body.appName, configUrl: req.body.configUrl };
+  Project.updateOne({ _id: req.params.id, "devices.ip_no": req.params.ip }, { $push: { "devices.$.configs": config } }).then
     (
       () => {
         res.status(201).json({

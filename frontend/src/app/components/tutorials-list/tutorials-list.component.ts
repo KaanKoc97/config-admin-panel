@@ -114,7 +114,6 @@ export class TutorialsListComponent implements OnInit {
     location.reload();
   }
 
-
   // removeAllProjects(): void {
   //   this.tutorialService.deleteAll()
   //     .subscribe(
