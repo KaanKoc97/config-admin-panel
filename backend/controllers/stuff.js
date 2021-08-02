@@ -105,15 +105,15 @@ exports.deviceCheck = (req, res, next) => {
     };
     const request = http.request(options, response => {
       if (response.statusCode >= 200) {
-        res.send({ "Status": "online" });
+        res.status(200).json({ "Status": "online" });
       }
       else
       {
-        res.send({"Status": "unknown"});
+        res.status(200).json({"Status": "unknown"});
       }
     });
     request.on('timeout', () => {
-      res.send({ "Status": "timeout" });
+      res.status(200).json({ "Status": "timeout" });
     });
     request.on('error', error => {
       console.error(error)
@@ -121,7 +121,7 @@ exports.deviceCheck = (req, res, next) => {
     request.end();
   }
   else {
-    res.send({ "Status": "confignotfound" });
+    res.status(200).json({ "Status": "confignotfound" });
   }
 };
 
