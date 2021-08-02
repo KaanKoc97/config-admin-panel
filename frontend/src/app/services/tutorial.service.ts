@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Device, Config, Project } from '../models/device.model';
 
-const baseUrl = 'http://192.168.30.12:8080';
+const baseUrl = 'http://192.168.14.15:8080';
 
 @Injectable({
   providedIn: 'root'
