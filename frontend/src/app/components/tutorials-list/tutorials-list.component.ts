@@ -80,6 +80,7 @@ export class TutorialsListComponent implements OnInit {
       this.currentProject.devices![index].status = "pending";
       this.tutorialService.deviceStatusCheck(value)
         .subscribe(data => {
+          console.log(data);
           this.currentProject.devices![index].status = data.Status;
         })
     })
