@@ -106,17 +106,14 @@ exports.deviceCheck = (req, res, next) => {
     const request = http.request(options, response => {
       if (response.statusCode >= 200) {
         res.send({ "Status": "online" });
-        next();
       }
       else
       {
-        res.send({"Status": "unknown"})
-        next();
+        res.send({"Status": "unknown"});
       }
     });
     request.on('timeout', () => {
       res.send({ "Status": "timeout" });
-      next();
     });
     request.on('error', error => {
       console.error(error)
