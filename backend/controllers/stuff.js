@@ -1,6 +1,20 @@
 const Project = require('../models/projects');
 const http = require('http');
 
+function httpRequest(options) {
+  return new Promise(function (resolve, reject) {
+    var req = http.request(options, function (res) {
+      if (res.statusCode >= 200) { resolve("online"); }
+    });
+    req.on('timeout', () => {
+      resolve("timeout");
+    });
+    req.on('error', error => {
+      console.error(error)
+    })
+    req.end();
+  });
+}
 exports.createProject = (req, res, next) => {
   const project = new Project({
     projectName: req.body.projectName,
@@ -90,7 +104,7 @@ exports.deleteProject = (req, res, next) => {
   );
 };
 
-exports.deviceCheck = (req, res, next) => {
+exports.deviceCheck = async (req, res, next) => {
   if (req.body.configs != undefined) {
     const objURL = new URL(req.body.configs[0].configUrl);
     var options = {
@@ -103,22 +117,12 @@ exports.deviceCheck = (req, res, next) => {
       },
       timeout: 3000,
     };
-    const request = http.request(options, response => {
-      if (response.statusCode >= 200) {
-        res.status(200).json({ "Status": "online" });
+    httpRequest(options).then(
+      function (body) {
+        res.status(200).json({ "Status": body })
       }
-      else
-      {
-        res.status(200).json({"Status": "unknown"});
-      }
-    });
-    request.on('timeout', () => {
-      res.status(200).json({ "Status": "timeout" });
-    });
-    request.on('error', error => {
-      console.error(error)
-    })
-    request.end();
+
+    );
   }
   else {
     res.status(200).json({ "Status": "confignotfound" });
