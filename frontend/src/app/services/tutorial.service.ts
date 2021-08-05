@@ -90,10 +90,6 @@ export class DeviceService {
     return this.http.delete(baseUrl+ '/' + id);
   }
 
-  // deleteAll(): Observable<any> {
-  //   return this.http.delete(baseUrl);
-  // }
-
   findByTitle(title: any): Observable<Project[]> {
     return this.http.get<Project[]>(`${baseUrl}?title=${title}`);
   }
