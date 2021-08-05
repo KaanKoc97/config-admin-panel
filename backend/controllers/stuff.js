@@ -10,7 +10,7 @@ function httpRequest(options) {
       resolve("timeout");
     });
     req.on('error', error => {
-      console.error(error)
+      reject(error);
     })
     req.end();
   });
@@ -119,10 +119,11 @@ exports.deviceCheck = async (req, res, next) => {
     };
     httpRequest(options).then(
       function (body) {
-        res.status(200).json({ "Status": body })
-      }
-
-    );
+        res.status(200).json({ "Status": body });
+      },
+    ).catch(function (error) {
+      console.log(error);
+    });
   }
   else {
     res.status(200).json({ "Status": "confignotfound" });
