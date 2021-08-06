@@ -115,18 +115,6 @@ export class TutorialsListComponent implements OnInit {
     location.reload();
   }
 
-  // removeAllProjects(): void {
-  //   this.tutorialService.deleteAll()
-  //     .subscribe(
-  //       response => {
-  //         console.log(response);
-  //         this.refreshList();
-  //       },
-  //       error => {
-  //         console.log(error);
-  //       });
-  // }
-
   searchTitle(): void {
     this.currentProject = {};
     this.currentProjectIndex = -1;

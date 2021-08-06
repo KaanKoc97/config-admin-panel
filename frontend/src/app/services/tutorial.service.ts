@@ -82,8 +82,8 @@ export class DeviceService {
     return this.http.delete(baseUrl + '/deleteDevice/' + id);
   }
 
-  update(id: any, data: any): Observable<any> {
-    return this.http.put(`${baseUrl}/${id}`, data);
+  updateDevice(device: Device): Observable<any> {
+    return this.http.put(baseUrl + "/modifyDevice/" + this.getProjId() + '/' + this.getDeviceIp(), device);
   }
 
   deleteProject(id: any): Observable<any> {

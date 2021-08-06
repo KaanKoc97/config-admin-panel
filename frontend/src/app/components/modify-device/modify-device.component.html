@@ -1,0 +1,14 @@
+<div>
+    <div class="submit-form">
+        <div class="form-group">
+            <label for="ip_no">Selected Project Name:</label><br>
+            <label for="projName">{{ projName }}</label><br>
+            <label for="ip_no">Selected Ip No:</label><br>
+            <label for="projName">{{ deviceIP }}</label><br>
+            <label for="ip_no">New Ip No:</label>
+            <input class="form-control" id="ip_no" required [(ngModel)]="device.ip_no" name="ip_no" />
+        </div>
+
+        <button (click)="modifyDevice()" class="btn btn-success">Submit</button>
+    </div>
+</div>

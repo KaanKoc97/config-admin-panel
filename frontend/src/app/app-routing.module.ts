@@ -5,6 +5,7 @@ import { TutorialDetailsComponent } from './components/tutorial-details/tutorial
 import { AddTutorialComponent } from './components/add-tutorial/add-tutorial.component';
 import { AddDeviceComponent } from './components/add-device/add-device.component';
 import { AddConfigComponent } from './components/add-config/add-config.component';
+import { ModifyDeviceComponent } from './components/modify-device/modify-device.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'tutorials', pathMatch: 'full' },
@@ -12,7 +13,8 @@ const routes: Routes = [
   { path: 'tutorials/:id', component: TutorialDetailsComponent },
   { path: 'addProject', component: AddTutorialComponent },
   { path: 'addDevice', component: AddDeviceComponent },
-  { path: 'addConfig', component: AddConfigComponent }
+  { path: 'addConfig', component: AddConfigComponent },
+  { path: 'modifyDevice', component: ModifyDeviceComponent}
 ];
 
 @NgModule({

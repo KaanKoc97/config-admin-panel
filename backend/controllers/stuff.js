@@ -65,15 +65,10 @@ exports.getOneProject = (req, res, next) => {
 };
 
 exports.modifyDevice = (req, res, next) => {
-  const thing = {
-    title: req.body.title,
-    description: req.body.description,
-    published: req.body.published
-  };
-  device.updateOne({ _id: req.params.id }, { $set: thing }).then(
+  Project.updateOne({ _id: req.params.id , "devices.ip_no" : req.params.ip}, { $set: {"devices.$.ip_no": req.body.ip_no}}).then(
     () => {
       res.status(201).json({
-        message: 'Thing updated successfully!'
+        message: 'Device updated successfully!'
       });
     }
   ).catch(

@@ -32,7 +32,7 @@
           <span class='material-icons green' title= "Online">check_circle</span>
         </div>
         <div *ngIf="device.status == 'timeout'" style="float:right;">
-          <span class='material-icons red' title= "Blocked">block</span>
+          <span class='material-icons red' title= "Timed Out">block</span>
         </div>
         <div *ngIf="device.status == 'pending'" style="float:right;">
           <span class='material-icons yellow' title= "Pending">check_circle</span>
@@ -80,7 +80,7 @@
         <span class='material-icons green' title="Online">check_circle</span>
       </div>
       <div *ngIf="currentDevice.status == 'timeout'">
-        <span class='material-icons red' title="Blocked" >block</span>
+        <span class='material-icons red' title="Timed Out" >block</span>
       </div>
       <div *ngIf="currentDevice.status == 'pending'">
         <span class='material-icons yellow' title="Pending" >check_circle</span>
