@@ -25,7 +25,6 @@ Install the npm
 ```
 npm install
 ```
-
 ## Install npm in the backend
 Go back the parent directory by the following command.
 ```
@@ -38,3 +37,4 @@ cd  .\backend\
 Install the npm 
 ```
 npm install
+```
