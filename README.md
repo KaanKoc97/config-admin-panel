@@ -17,7 +17,7 @@ git clone https://github.com/KaanKoc97/config-admin-panel.git
 ```
 Open different terminals for backend and frontend.
 ## Install npm in the frontend
-Enter the frontend directory by
+Enter the frontend directory by the following command.
 ```
 cd  .\frontend\
 ```
@@ -27,11 +27,11 @@ npm install
 ```
 
 ## Install npm in the backend
-Go back the parent directory 
+Go back the parent directory by the following command.
 ```
 cd  ..
 ```
-Enter the frontend directory by
+Enter the backend directory by the following command.
 ```
 cd  .\backend\
 ```
