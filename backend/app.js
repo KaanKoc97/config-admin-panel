@@ -11,7 +11,7 @@ mongoose.set('useCreateIndex', true);
 
 
 var corsOptions = {
-    origin: 'http://192.168.14.15:4200',
+    origin: 'http://localhost:4200',
     optionsSuccessStatus: 200 // For legacy browser support
 }
 
