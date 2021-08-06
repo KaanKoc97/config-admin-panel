@@ -10,6 +10,7 @@ frontend and backend, respectively.
 * Install npm in the backend
 * Run the frontend
 * Run the backend
+* Open the project on browser
 ## Clone the project
 Git installation is required to execute the following command.
 ```
@@ -34,7 +35,19 @@ Enter the backend directory by the following command.
 ```
 cd  .\backend\
 ```
-Install the npm 
+Install the npm packages by the following command.
 ```
 npm install
 ```
+## Run the frontend
+Enter the frontend directory and run the following command.
+```
+npm run start
+```
+## Run the backend
+Enter the backend directory and run the following command.
+```
+npm run start
+```
+## Open project on browser
+
