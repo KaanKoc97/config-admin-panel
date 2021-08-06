@@ -50,4 +50,4 @@ Enter the backend directory and run the following command.
 npm run start
 ```
 ## Open project on browser
-Open [htttp://localhost:4200] on your favorite browser.
+Open [localhost](htttp://localhost:4200) on your favorite browser.
