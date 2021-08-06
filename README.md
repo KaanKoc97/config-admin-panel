@@ -6,8 +6,8 @@ which has Ip and Configurations its inside. Requests are send asynchonously to f
 frontend and backend, respectively. Object Oriented Design in the TypeScript is heavily used in the project. On the other hand, Promises/Awaits are used to control flow of executions in Node.js(backend) part of the project.
 # Installation
 * Clone the project
-* Install npm in the frontend
-* Install npm in the backend
+* Install the frontend via npm
+* Install the backend via npm
 * Run the frontend
 * Run the backend
 * Open the project on browser
@@ -17,7 +17,7 @@ Git installation is required to execute the following command.
 git clone https://github.com/KaanKoc97/config-admin-panel.git
 ```
 Open different terminals for backend and frontend.
-## Install npm in the frontend
+## Install the frontend via npm
 Enter the frontend directory by the following command.
 ```
 cd  .\frontend\
@@ -26,7 +26,7 @@ Install the npm
 ```
 npm install
 ```
-## Install npm in the backend
+## Install the backend via npm
 Go back the parent directory by the following command.
 ```
 cd  ..
@@ -50,4 +50,4 @@ Enter the backend directory and run the following command.
 npm run start
 ```
 ## Open project on browser
-
+Connect htttp://localhost:4200 on your favorite browser.
