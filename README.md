@@ -25,3 +25,16 @@ Install the npm
 ```
 npm install
 ```
+
+## Install npm in the backend
+Go back the parent directory 
+```
+cd  ..
+```
+Enter the frontend directory by
+```
+cd  .\backend\
+```
+Install the npm 
+```
+npm install
