@@ -1,19 +1,22 @@
 #Step 1
 
-FROM node:12-alpine as build-step
+FROM node:12-alpine as build
 
 WORKDIR /frontend
 
-COPY package.json /frontend
+COPY ./ /frontend
 
 RUN npm install
 
-COPY . /frontend
+#RUN npm run build
 
-RUN npm run build
+CMD ["npm", "run", "start"]
 
 # Step 2
 
-FROM nginx:1.17.1-alpine
+#FROM nginx:latest
 
-COPY --from=build-step /frontend /usr/share/nginx/html 
+#COPY --from=build /frontend/dist/Angular12Crud /usr/share/nginx/html 
+
+#EXPOSE 4200
+
