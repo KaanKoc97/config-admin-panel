@@ -6,13 +6,11 @@ services:
       - '27017:27017'
   server:
     build: backend
-    image: sanjaysaini2000/meanstack_backend
+    image: kaankoc/meanstack_backend
     ports:
       - '8080:8080'
     links:
       - mongo-db
   client:
     build: frontend
-    image: sanjaysaini2000/meanstack_frontend
-    ports:
-      - '4200:4200'
+    image: kaankoc/meanstack_frontend
