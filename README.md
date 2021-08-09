@@ -8,6 +8,7 @@ frontend and backend, respectively. Object Oriented Design in the TypeScript is 
 * Clone the project
 * Install the frontend via npm
 * Install the backend via npm
+* Install docker and pull mongodb
 * Run the frontend
 * Run the backend
 * Open the project on browser
@@ -38,6 +39,11 @@ cd  .\backend\
 Install the npm packages by the following command.
 ```
 npm install
+```
+## Install docker and pull mongodb
+Install docker and after that on any directory run the following command.
+```
+docker pull mongo
 ```
 ## Run the frontend
 Enter the frontend directory and run the following command.
