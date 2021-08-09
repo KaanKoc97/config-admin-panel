@@ -8,9 +8,10 @@ frontend and backend, respectively. Object Oriented Design in the TypeScript is 
 * Clone the project
 * Install the frontend via npm
 * Install the backend via npm
-* Install docker and pull mongodb
+* Install Docker Desktop and pull mongodb
 * Run the frontend
 * Run the backend
+* Run mongodb on Docker
 * Open the project on browser
 ## Clone the project
 Git installation is required to execute the following command.
@@ -41,7 +42,7 @@ Install the npm packages by the following command.
 npm install
 ```
 ## Install docker and pull mongodb
-Install docker and after that on any directory run the following command.
+Install Docker Desktop and after that at any directory run the following command.
 ```
 docker pull mongo
 ```
@@ -55,5 +56,8 @@ Enter the backend directory and run the following command.
 ```
 npm run start
 ```
+## Run mongodb on docker
+Run the image called mongo with 27017 as a localport number via Docker Desktop.
+
 ## Open project on browser
 Connect htttp://localhost:4200 on your favorite browser.
