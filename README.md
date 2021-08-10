@@ -60,4 +60,4 @@ npm run start
 Run the image called mongo with 27017 as a localport number via Docker Desktop.
 
 ## Open project on browser
-Connect htttp://localhost:4200 on your favorite browser.
+Connect http://localhost:4200 on your favorite browser.
