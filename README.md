@@ -24,7 +24,7 @@ Enter the frontend directory by the following command.
 ```
 cd  .\frontend\
 ```
-Install the npm 
+Install packages via npm by the following command.
 ```
 npm install
 ```
@@ -37,7 +37,7 @@ Enter the backend directory by the following command.
 ```
 cd  .\backend\
 ```
-Install the npm packages by the following command.
+Install the packages via npm by the following command.
 ```
 npm install
 ```
