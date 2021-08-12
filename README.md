@@ -65,6 +65,8 @@ Enter the frontend directory and run the following command.
 ```
 npm run start
 ```
+## Open project on browser
+Connect http://localhost:4200 on your favorite browser.
 
 # Method 2
 ## Clone the project
