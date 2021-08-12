@@ -9,6 +9,34 @@
             <input class="form-control" id="appName" required [(ngModel)]="config.appName" name="appName" />
             <label for="label">Config Url:</label>
             <input class="form-control" id="configUrl" required [(ngModel)]="config.configUrl" name="configUrl" />
+            <label for="label">Config UpdateUrl:</label>
+            <input class="form-control" id="configUpdateUrl" required [(ngModel)]="config.configUpdateUrl"
+                name="configUpdateUrl" />
+            <label for="label">Config Reload:</label>
+            <input class="form-control" id="configReload" required [(ngModel)]="config.configReload"
+                name="configReload" />
+            <label for="label">Config Application Name:</label>
+            <input class="form-control" id="logUrl" required [(ngModel)]="config.logUrl" name="logUrl" />
+            <label for="label">Config LogUpdateUrl:</label>
+            <input class="form-control" id="logUpdateUrl" required [(ngModel)]="config.logUpdateUrl"
+                name="logUpdateUrl" />
+
+            <label for="label">Config LogReload:</label>
+            <input class="form-control" id="logReload" required [(ngModel)]="config.logReload" name="logReload" />
+            <label for="label">Config ServerLog:</label>
+            <input class="form-control" id="serverLog" required [(ngModel)]="config.serverLog" name="serverLog" />
+
+            <label for="label">Config Version:</label>
+            <input class="form-control" id="version" required [(ngModel)]="config.version" name="version" />
+            <label for="label">Config checkStatus:</label>
+            <input class="form-control" id="checkStatus" required [(ngModel)]="config.checkStatus" name="checkStatus" />
+
+            <label for="label">Config ConfigurationMD:</label>
+            <input class="form-control" id="configurationMD" required [(ngModel)]="config.configurationMD"
+                name="configurationMD" />
+            <label for="label">Config GitSource:</label>
+            <input class="form-control" id="gitSource" required [(ngModel)]="config.gitSource" name="gitSource" />
+
         </div>
 
         <button (click)="saveConfig()" class="btn btn-success">Submit</button>

@@ -146,7 +146,7 @@ exports.createDevice = (req, res, next) => {
 
 
 exports.createConfig = (req, res, next) => {
-  let config = { appName: req.body.appName, configUrl: req.body.configUrl };
+  let config = req.body;
   Project.updateOne({ _id: req.params.id, "devices.ip_no": req.params.ip }, { $push: { "devices.$.configs": config } }).then
     (
       () => {
