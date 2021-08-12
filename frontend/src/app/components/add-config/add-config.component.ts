@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Config } from 'src/app/models/device.model';
 import { DeviceService } from 'src/app/services/tutorial.service';
 
@@ -12,7 +13,7 @@ export class AddConfigComponent implements OnInit {
   config = new Config("default");
   projName : any;
   deviceIp : any;
-  constructor(private tutorialService: DeviceService) { }
+  constructor(private tutorialService: DeviceService, private router: Router) { }
 
   ngOnInit(): void {
     this.projName = this.tutorialService.getProjName();
@@ -22,6 +23,7 @@ export class AddConfigComponent implements OnInit {
   {
     this.tutorialService.createConfig(this.config).subscribe(data => {
       console.log(data);
+      this.router.navigate(['/tutorials']);
     },
       error => {
         console.log(error);
