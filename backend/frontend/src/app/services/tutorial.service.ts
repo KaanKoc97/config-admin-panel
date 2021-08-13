@@ -16,7 +16,7 @@ export class DeviceService {
   constructor(private http: HttpClient) { }
 
   getAll(): Observable<Project[]> {
-    return this.http.get<Project[]>(baseUrl);
+    return this.http.get<Project[]>(baseUrl+"/getAllDevice");
   }
 
   get(id: any): Observable<Project> {
