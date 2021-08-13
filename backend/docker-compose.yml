@@ -1,0 +1,13 @@
+version: '3.7'
+services:
+  mongo-db:
+    image: mongo
+    ports:
+      - '27017:27017'
+  server:
+    build: .
+    image: cap-trial
+    ports:
+      - '8080:8080'
+    links:
+      - mongo-db

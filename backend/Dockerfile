@@ -1,11 +1,15 @@
-FROM node:12-alpine as build-step
+FROM node:12-alpine AS ui-build
+WORKDIR /usr/src/app
+COPY frontend/ ./frontend/
+RUN cd frontend && npm install @angular/cli && npm install && npm run build
 
-WORKDIR /backend
-
-COPY package.json /backend
-
+FROM node:12-alpine AS server-build
+WORKDIR /root/
+COPY --from=ui-build /usr/src/app/frontend/dist ./frontend/dist
+COPY package*.json ./
 RUN npm install
+COPY . ./
 
-COPY . /backend
+EXPOSE 8080
 
-CMD [ "node","server.js" ]
+CMD ["node", "server.js"]

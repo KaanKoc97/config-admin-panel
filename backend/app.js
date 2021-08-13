@@ -18,6 +18,10 @@ var corsOptions = {
 app.use(cors(corsOptions));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use(express.static(process.cwd()+"/frontend/dist/Angular12Crud/"));
 app.use('/', stuffRoutes);
+app.get('/', (req,res) => {
+    res.sendFile(process.cwd()+"/frontend/dist/Angular12Crud/index.html")
+  });
 
 module.exports = app;
