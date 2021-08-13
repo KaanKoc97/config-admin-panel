@@ -23,7 +23,7 @@ export class AddConfigComponent implements OnInit {
   {
     this.tutorialService.createConfig(this.config).subscribe(data => {
       console.log(data);
-      this.router.navigate(['/tutorials']);
+      this.router.navigate(['/']);
     },
       error => {
         console.log(error);

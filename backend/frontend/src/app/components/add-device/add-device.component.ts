@@ -23,7 +23,7 @@ export class AddDeviceComponent implements OnInit {
   {
     this.tutorialService.createDevice(this.device).subscribe(data => {
       console.log(data);
-      this.router.navigate(['/tutorials']);
+      this.router.navigate(['/']);
     },
       error => {
         console.log(error);

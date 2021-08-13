@@ -26,7 +26,7 @@ export class AddTutorialComponent implements OnInit {
       .subscribe(
         response => {
           console.log(response);
-          this.router.navigate(['/tutorials']);
+          this.router.navigate(['/']);
         },
         error => {
           console.log(error);
