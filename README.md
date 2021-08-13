@@ -20,4 +20,4 @@ Dockor-compose is reqiured to execute the following commmand inside the root dir
 docker-compose up -d
 ```
 ## Open project on browser
-Connect http://localhost:4200 on your favorite browser.
+Connect http://localhost:8080 on your favorite browser.
